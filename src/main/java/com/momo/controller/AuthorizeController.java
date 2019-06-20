@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -48,6 +49,8 @@ public class AuthorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
+//            List<User> all = userMapper.findAll();
+//            System.out.println(all);
             //登陆成功，存入session
             request.getSession().setAttribute("user", githubUser);
             return "redirect:/";

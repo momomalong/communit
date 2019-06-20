@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
@@ -32,7 +32,8 @@ public class AuthorizeController {
     private UserMapper userMapper;
 
     @GetMapping("/callback")
-    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state, HttpServletRequest request){
+    public String callback(@RequestParam(name = "code") String code, @RequestParam(name = "state") String state,
+                           HttpServletResponse response){
         AccessTokenDto accessTokenDto = new AccessTokenDto();
         accessTokenDto.setCode(code);
         accessTokenDto.setRedirect_uri(redirectUri);
@@ -43,7 +44,8 @@ public class AuthorizeController {
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if(githubUser != null){
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            final String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
@@ -51,8 +53,8 @@ public class AuthorizeController {
             userMapper.insert(user);
 //            List<User> all = userMapper.findAll();
 //            System.out.println(all);
-            //登陆成功，存入session
-            request.getSession().setAttribute("user", githubUser);
+            //登陆成功，存入数据库，相当于存入session，将用户存入cookie中
+            response.addCookie(new Cookie("token",token));
             return "redirect:/";
         } else {
             //登陆成功，重新登陆

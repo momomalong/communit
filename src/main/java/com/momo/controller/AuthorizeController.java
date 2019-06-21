@@ -40,9 +40,11 @@ public class AuthorizeController {
         accessTokenDto.setClient_id(clientId);
         accessTokenDto.setClient_secret(clientSecret);
         accessTokenDto.setState(state);
+        //将code等一系列参数通过post请求github获取accessToken
         String accessToken = githubProvider.getAccessToken(accessTokenDto);
+        //将获取的accessToken通过get请求对比并调用user API获取用户信息
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if(githubUser != null){
+        if(githubUser != null && githubUser.getId() != null){
             User user = new User();
             final String token = UUID.randomUUID().toString();
             user.setToken(token);

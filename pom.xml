@@ -73,6 +73,21 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- lombok插件，可通过注解帮忙生成set,get等方法 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>

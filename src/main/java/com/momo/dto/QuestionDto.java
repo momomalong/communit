@@ -1,10 +1,10 @@
-package com.momo.model;
+package com.momo.dto;
 
+import com.momo.model.User;
 import lombok.Data;
 
 @Data
-public class Question {
-
+public class QuestionDto {
     private Integer id;
     //发布标题
     private String title;
@@ -24,5 +24,6 @@ public class Question {
     private Integer viewCount;
     //点赞数
     private Integer likeCount;
-
+    //获取用户头像
+    private User user;
 }

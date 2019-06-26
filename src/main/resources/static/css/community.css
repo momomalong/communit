@@ -11,3 +11,18 @@
     float: right;
     margin-bottom: 15px;
 }
+
+.sp-margin{
+    margin: 0px 10px 0px 0px;
+}
+
+.media-object{
+    width: 38px;
+    height: 38px;
+}
+
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}

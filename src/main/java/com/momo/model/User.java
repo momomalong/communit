@@ -1,70 +1,23 @@
 package com.momo.model;
 
+import lombok.Data;
+
+@Data
 public class User {
+    //用户id
     private Integer id;
+    //用户名字
     private String name;
+    //用户Github id
     private String accountId;
+    //用户是否在线标识
     private String token;
+    //用户创建时间
     private Long gmtCreate;
+    //用户修改时间
     private Long gmtModified;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Long getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Long gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", accountId='" + accountId + '\'' +
-                ", token='" + token + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
-    }
+    //用户Github 描述
+    private String bio;
+    //头像
+    private String avatarUrl;
 }
